@@ -4,6 +4,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
+\usepackage{url}
 
 \title{Unser erstes Dokument}
 \author{Latex Tutorial}
@@ -18,6 +19,12 @@
 \bibliographystyle{unsrt}
 
 \section{Einleitung}
+Secure Multiparty Computation ein großes Forschungsfeld in der Kryptographie, in dem zwar schon in den 1980er Jahren die Forschung begann, das aber seit den 2000er Jahren mehr Aufmerksamkeit bekommt. \cite{Kogan2021}
+In diesem Forschungsfeld werden Methoden erforscht, mit denen gemeinsam Funktionen von Eingabedaten berechnet werden können, ohne dass dabei die anderen teilnehmenden Parteien die Eingabedaten erhalten.\\
+Nachdem die Forschungsergebnisse in den 80ern eher theoretisch waren, sind die neueren Forschungen eher praktisch. Denn durch mehrere Effekte wurden die Berechnungen erst in breiteren Anwendungsbereichen sinnvoll nutzbar. Einerseits wurden die berechnenden Computer stärker, beispielsweise hat sich die CPU Geschwindigkeit in PCs ungefähr verdoppelt. Das allein kann aber noch nicht die mehr als 60.000 fache Beschleunigung der Berechnungsgeschwindigkeit erklären. \cite{Kogan2021}
+GRAPH EINFÜGEN.\\
+Der größte Teil des Tempogewinns liegt also an neuen oder verbesserten Protokollen, die entwickelt wurden. Eine Funktion, die in vielen Bereichen interessant sein kann, ist die Schnittmenge der Eingabemengen der teilnehmenden Parteien. 2021 wurde \cite{Doettling2021} veröffentlicht. In diesem Paper wurde ein neues Protokoll vorgestellt, das genau diese Funktion erfüllt. Durch eine Implementierung des Protokolls, kann nun festgestellt werden, ob dieses Protokoll funktioniert und effizient ist.
+
 
 \subsection{Anwendungsbeispiel}
 Der Browser Tor, den Menschen benutzen können, um in das sogenannte Darknet zu gelangen legt einen sehr großen Wert auf die Sicherheit der Nutzer. Das macht die Analyse bestimmter Statistiken sehr schwierig. Deshalb gibt es auch vom Anbieter selbst keine genauen Angaben über beispielsweise die Nutzerzahl, sondern nur Schätzungen. Um genauere Schätzungen über die Nutzerzahl zu ermöglichen, könnte man nun Daten von mehreren "Knoten" des Tor Browsers kombinieren. In diesem Fall möchte man gerne herausfinden, wie viele Überschneidungen es in den Daten der "Knoten" gibt, um Mehrfachzählungen zu vermeiden. Da viele Nutzer des Tor Browsers aber einen sehr großen Wert auf Sicherheit legen, möchte man natürlich tunlichst vermeiden, Daten von mehreren "Knoten" miteinander zu kombinieren, weil so möglicherweise Informationen gewonnen werden können, die geheim sein sollten.\\
@@ -41,6 +48,12 @@ Diese Funktionalitäten sind für das Protokoll wichtig, denn in jedem Unterprot
 \section{Multiparty Cardinality Testing}
 
 \subsection{Neues am Paper}
+Diese Arbeit basiert auf dem Protokoll, das in \cite{Doettling2021} vorgestellt wurde. Es gab schon vorher einige Veröffentlichungen zum Thema Private Set Intersections, auf denen das Paper aufbauen kann. Zuerst wurden Protokolle für zwei Parteien entworfen, dann auch für mehrere Parteien. Das Paper
+\cite{Ghosh2019} ist die letzte Veröffentlichung, auf der das Protokoll aufbaut.\\
+Die große Neuerung in der Veröffentlichung \cite{Ghosh2019} ist, dass die Kommunikations-Komplexität nun vor allem von O(t) und nur noch logarithmisch von O(n) abhängt. \cite{Ghosh2019}\\
+Das von Gosh vorgeschlagene Cardinality Testing ist jedoch noch nicht  für mehrere Parteien optimiert. Daher ist das neue Protokoll zur Bestimmung der Schnittmengen-Größe die wichtigste Neuerung des Papers \cite{Doettling2021}
+
+
 \subsection{Abwandlungen zum Paper}
 Das Protokoll wurde offensichtlich entworfen um auch mit mehreren teilnehmenden Parteien effizient zu sein.
 Das Paper \cite{Doettling2021} nutzt also in vielen Unterprotokollen Broadcast-Funktionen.
@@ -67,18 +80,22 @@ Das ist die einfachste Möglichkeit, um zu erreichen, dass alle Parteien zum ric
 
 \section{Funktion der Software}
 \subsection{Verschlüsselungen}
-\subsubsection{DDH/Damgard-Jurik}
+\subsubsection{Die Wahl der Verschlüsselung}
+Im Paper \cite{Doettling2021} wird kein Verschlüsselungsverfahren genannt. Jedes additiv homomorphe Verschlüsselungsverfahren kann theoretisch genutzt werden. Es werden jedoch einige Vorschläge  gemacht. Einer dieser Vorschläge ist das Paillier-Kryptosystem. Das Damgard-Jurik System, für das ich mich entschieden habe, ist eine Verallgemeinerung des Paillier-Kryptosystems. Unter anderem ist die Damgard-Jurik Verschlüsselung besser für Berechnungen mit mehreren Beteiligten geeignet, denn es gibt auch eine Threshold-Variante dieses Verschlüsselungs-Systems. \cite{IvanDamgard2004}
+Ich habe mich bei der Verschlüsselung für das Damgard-Jurik Cryptosystem entschieden, weil es gut zu den Anforderungen, die wir haben, passt. Es ist speziell für den Anwendungsfall mit mehreren Parteien entworfen und ist deshalb auch in unserem Fall effizient.\\
 
 
 
 \subsubsection{Damgard-Jurik Verschlüsselung}
-Ich habe mich bei der Verschlüsselung für das Damgard-Jurik Cryptosystem entschieden, weil es gut zu den Anforderungen, die wir haben, passt. Es ist speziell für den Anwendungsfall mit mehreren Parteien entworfen und ist deshalb auch in unserem Fall effizient.\\
 Indem wir Shamirs Secret Sharing benutzen, können können wir einen public Key und eine beliebige Anzahl an Private Key-Shares erstellen. Shamirs Secret Sharing basiert auf Polynominterpolation und kann beispielsweise auch genutzt werden, um dem System später noch neue Parteien hinzuzufügen.\cite{Shamir1979}\\
 Durch die Nutzung der Damgard-Jurik Verschlüsselung kann jeder, der den public Key besitzt, Daten verschlüsseln. Entschlüsseln von Daten ist jedoch komplexer. Um Daten zu entschlüsseln, müssen genügend Parteien mit Private Key-Shares die Daten teilweise entschlüsseln. Danach müssen die partiellen Entschlüsselungen kombiniert werden. Hat man aber weniger als die benötigte Anzahl an partiellen Entschlüsselungen, werden keine Informationen sichtbar. \cite{IvanDamgard2004}\\
 Einer der Hauptgründe, wegen dem ich mich für die Damgard-Jurik-Verschlüsselung entschieden habe ist, das man zum Entschlüsseln von Daten den Private Key nicht wiederherstellen muss. Dadurch kann der Schlüssel nicht missbraucht werden, um auch andere Dinge zu entschlüsseln. Dadurch müssen die Parteien keiner anderen Partei trauen und die Parteien können entscheiden, was entschlüsselt werden soll und was nicht. \cite{IvanDamgard2004}\\
 Die Verschlüsselung erfüllt natürlich auch die andere große Anforderung, die wir haben. Die Verschlüsselung ist additiv homomorph, was wir für die Funktionalität des Protokolls brauchen. \cite{IvanDamgard2004}
 
 \subsubsection{Übertragung der Python Implementierung}
+Für die Implementierung der Verschlüsselung habe ich mich an der Python Implementierung \cite{swansonk14} orientiert. Da die Sicherheit der Verschlüsselung auf mathematischen Annahmen basiert  \cite{10.1007/3-540-48910-X_16}, muss mit großen Zahlen (mehr als 32 Bits) gerechnet werden, um sicher gegen Brute-Force-Angriffe zu sein. Daher entstehen bei der Übertragung der Python Implementierung nach Java einige Probleme. Da in Python Ganzzahlen beliebig groß werden können, aber in Java Ganzzahlen auf 32 Bit begrenzt sind, muss ich auf BigInteger zurückgreifen, um verschlüsselte Zahlen korrekt darstellen zu können.
+Ein ähnliches Problem ist beispielsweise das Erstellen von zufälligen Primzahlen von bestimmter Länge. In Python stellt das kein Problem dar, aber in Java ist das erstellen von beliebig langen Primzahlen komplizierter. Trotz dieser Probleme habe ich eine funktionierende Implementierung der Damgard-Jurik Verschlüsslung geschaffen, die ich dann nutzen kann, um die Implementierung der komplexeren Teil-Protokolle zu testen.
+
 
 \subsection{Architektur}
 \subsection{Ring Realisierung}
@@ -95,10 +112,26 @@ AUSSCHNITT DER NEUEN KLASSE
 
 \section{Probleme der Software}
 \subsection{Nicht alle Protokolle sicher implementiert}
+Da einige der Protokolle auch auf anderen Veröffentlichungen basieren, für die keine Implementierungen zu finden waren, hat die Zeit nicht ausgereicht, um alle Protokolle sicher zu implementieren. Deshalb musste ich einige Teil-Protokolle unsicher implementieren, um die Funktionalität des Protokolls zeigen zu können.\\
+BEISPIEL  FÜR UNSICHERE IMPLEMENTIERUNG:
+OLS, braucht SUR, was auf dem Paper \cite{tcc-2007-3673} basiert.
+
+Wenn dann die relevanten Teile der anderen Paper implementiert sind, können diese dann die unsicheren Teil-Protokolle ersetzen und diese Implementierung damit sicher machen.
+Die Teil-Protokolle, bei denen eine sichere Implementierung möglich war, habe ich wie im Paper gezeigt sicher implementiert. Dazu zählen unter anderem die grundlegenden Protokolle, wie "secure Matrix Multiplikation", und die interessantesten Protokolle, wie "secure Cardinality Testing".\\
+
+
+
 \subsection{Bei großen Zahlen interferieren von Ring/Verschlüsselung}
 
 \section{Fazit}
-\section{Literatur}
+Das Ziel war es, zu zeigen, dass die Neuerungen aus dem Paper \cite{Doettling2021} funktionieren und effizient sind. Durch meine Implementierung wird deutlich, dass das vorgestellte Protokoll funktioniert. 
+Leider konnte ich durch die Zeitbegrenzung keine komplette, sichere Implementierung des ganzen vorgestellten Protokolls liefern, da zu viele der Teil-Protokolle auf andere Implementierungen zurückgreifen, die es zu diesem Zeitpunkt noch nicht gibt.
+Das Protokoll ist so nicht direkt in Anwendungen nutzbar, die auf der Datensicherheit der Eingabemengen bestehen.
+Dennoch habe ich gezeigt, dass das Protokoll funktioniert. Dadurch kann weitere Forschung auf dem Protokoll aufbauen und es erweitern oder verbessern.\\
+Das Ziel dieser Arbeit ist also erreicht, auch wenn bis zu einer sicheren Implementierung noch einige Arbeit Fehlt.
+
+
+\section{Quellen}
 \bibliography{Bachelor-Quellen}
 
 
