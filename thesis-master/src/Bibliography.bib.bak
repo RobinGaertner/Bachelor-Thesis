@@ -1,0 +1,99 @@
+% Encoding: UTF-8
+
+@Misc{Ghosh2019,
+  author       = {Satrajit Ghosh and Mark Simkin},
+  howpublished = {Cryptology ePrint Archive, Report 2019/175},
+  note         = {\url{https://eprint.iacr.org/2019/175}},
+  title        = {The Communication Complexity of Threshold Private Set Intersection},
+  year         = {2019},
+}
+
+@InProceedings{tcc-2007-3673,
+  author    = {Eike Kiltz and Payman Mohassel and Enav Weinreb and Matthew K. Franklin},
+  booktitle = {Theory of Cryptography, 4th Theory of Cryptography Conference, TCC 2007, Amsterdam, The Netherlands, February 21-24, 2007, Proceedings},
+  title     = {Secure Linear Algebra Using Linearly Recurrent Sequences},
+  year      = {2007},
+  pages     = {291-310},
+  publisher = {Springer},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {4392},
+  doi       = {10.1007/978-3-540-70936-7_16},
+  url       = {https://iacr.org/archive/tcc2007/43920291/43920291.pdf},
+}
+
+@InProceedings{10.1007/3-540-48910-X_16,
+  author    = {Paillier, Pascal},
+  booktitle = {Advances in Cryptology --- EUROCRYPT '99},
+  title     = {Public-Key Cryptosystems Based on Composite Degree Residuosity Classes},
+  year      = {1999},
+  address   = {Berlin, Heidelberg},
+  editor    = {Stern, Jacques},
+  pages     = {223--238},
+  publisher = {Springer Berlin Heidelberg},
+  abstract  = {This paper investigates a novel computational problem, namely the Composite Residuosity Class Problem, and its applications to public-key cryptography. We propose a new trapdoor mechanism and derive from this technique three encryption schemes: a trapdoor permutation and two homomorphic probabilistic encryption schemes computationally comparable to RSA. Our cryptosystems, based on usual modular arithmetics, are provably secure under appropriate assumptions in the standard model.},
+  isbn      = {978-3-540-48910-8},
+}
+
+@Article{Doettling2021,
+  author = {Pedro Branco, Nico Döttling, Sihang Pu},
+  title  = {Multiparty Cardinality Testing for Threshold Private SetIntersection},
+  year   = {2021},
+}
+
+@Article{Shamir1979,
+  author = {Adi Shamir},
+  title  = {How to Share a Secret},
+  year   = {1979},
+}
+
+@Misc{Yi2014,
+  author    = {Yi, X and Paulet, R and Bertino, E},
+  title     = {Homomorphic Encryption. In: Homomorphic Encryption and Applications. SpringerBriefs in Computer Science},
+  year      = {2014},
+  doi       = {10.1007/978-3-319-12229-8_2},
+  publisher = {Springer},
+}
+
+@Misc{swansonk14,
+  author       = {swansonk14},
+  howpublished = {https://github.com/cryptovoting/damgard-jurik},
+  title        = {Damgard-Jurik},
+}
+
+@Article{IvanDamgard2004,
+  author = {Ivan Damgard, Mads Jurik},
+  title  = {A Generalization of Paillier’s Public-Key Systemwith Applications to Electronic Voting},
+  year   = {2004},
+}
+
+@Misc{Kogan2021,
+  author       = {Digma Kogan},
+  howpublished = {https://theorydish.blog/2021/05/26/few-lessons-from-the-history-of-multiparty-computation},
+  month        = may,
+  note         = {Stand: 17.7.2021},
+  title        = {A few lessons from the history of multiparty computation},
+  year         = {2021},
+}
+
+@InProceedings{Schoenmakers,
+  author    = {B. Schoenmakers and P.T. Tuyls},
+  booktitle = {Advances in Cryptology - Eurocrypt 2006 (Proceedings 25th Annual International Conference on the Theory and Applications of Cryptographic Techniques, Saint Petersburg, Russia, May 28-June 1, 2006)},
+  title     = {Efficient binary conversion for Paillier encrypted values},
+  year      = {2006},
+  address   = {Germany},
+  editor    = {S. Vaudenay},
+  pages     = {522--537},
+  publisher = {Springer},
+  series    = {Lecture Notes in Computer Science},
+  abstract  = {We consider the framework of secure n-party computation based on threshold homomorphic cryptosystems as put forth by Cramer, Damg{\aa}rd, and Nielsen at Eurocrypt 2001. When used with Paillier{\textquoteright}s cryptosystem, this framework allows for efficient secure evaluation of any arithmetic circuit defined over , where N is the RSA modulus of the underlying Paillier cryptosystem. In this paper, we extend the scope of the framework by considering the problem of converting a given Paillier encryption of a value into Paillier encryptions of the bits of x. We present solutions for the general case in which x can be any integer in {0,1,...,N – 1}, and for the restricted case in which x <N/(n2¿) for a security parameter ¿. In the latter case, we show how to extract the l least significant bits of x (in encrypted form) in time proportional to l, typically saving a factor of log2N /l compared to the general case. Thus, intermediate computations that rely in an essential way on the binary representations of their input values can be handled without enforcing that the entire computation is done bitwise. Typical examples involve the relational operators such as <and =. As a specific scenario we will consider the setting for (approximate) matching of biometric templates, given as bit strings.},
+  doi       = {10.1007/11761679_31},
+  isbn      = {3-540-34546-6},
+  language  = {English},
+}
+
+@Article{JLinAlg,
+  journal = {http://jlinalg.sourceforge.net/#Documentation},
+  title   = {JLinAlg Library},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
