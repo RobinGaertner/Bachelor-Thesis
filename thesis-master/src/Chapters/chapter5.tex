@@ -1,0 +1,12 @@
+\chapter{Probleme der Software}
+
+\section{Nicht alle Protokolle sicher implementiert}
+Da einige der Protokolle auch auf anderen Veröffentlichungen basieren, für die keine Implementierungen zu finden waren, hat die Zeit nicht ausgereicht, um alle Protokolle sicher zu implementieren. Deshalb musste ich einige Teil-Protokolle unsicher implementieren, um die Funktionalität des Protokolls zeigen zu können.\\
+BEISPIEL  FÜR UNSICHERE IMPLEMENTIERUNG:
+OLS, braucht SUR, was auf dem Paper \cite{tcc-2007-3673} basiert.
+
+Wenn dann die relevanten Teile der anderen Paper implementiert sind, können diese dann die unsicheren Teil-Protokolle ersetzen und diese Implementierung damit sicher machen.
+Die Teil-Protokolle, bei denen eine sichere Implementierung möglich war, habe ich wie im Paper gezeigt sicher implementiert. Dazu zählen unter anderem die grundlegenden Protokolle, wie "secure Matrix Multiplikation", und die interessantesten Protokolle, wie "secure Cardinality Testing".\\
+
+
+\section{Bei großen Zahlen interferieren von Ring/Verschlüsselung}
