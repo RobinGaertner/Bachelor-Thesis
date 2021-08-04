@@ -1,0 +1,9 @@
+\chapter{Fazit}
+
+Das Ziel war es, zu zeigen, dass die Neuerungen aus dem Paper \cite{Doettling2021} funktionieren und effizient sind. Durch meine Implementierung wird deutlich, dass das vorgestellte Protokoll funktioniert. \\
+Die Analyse der Teilprotokolle MPCT und secDT hat ergeben, dass sich die Laufzeit der Protokolle wie im Paper beschrieben verhält. Die Laufzeit hängt nun also nicht mehr von der Größe der Eingabemengen ab, sondern nur von der Anzahl der "erlaubten Abweichungen" oder dem "threshold", wie er im Paper genannt wird, und der Anzahl der teilnehmenden Parteien ab.\\
+Damit kann je nach Aufgabe und Anwendungsbereich sehr viel effizienter als in früheren Protokollen festgestellt werden, ob die Schnittmenge größer ist, als ein gegebener wert. Das kann dann mit anderen Protokollen kombiniert werden, wie beispielsweise dem von Gosh und Simkin \cite{Ghosh2019} entworfenen Protokoll, um noch komplexere Protokolle effizienter zu machen. \\
+Leider konnte ich durch die Zeitbegrenzung dieser Arbeit keine komplette, sichere Implementierung des ganzen vorgestellten Protokolls liefern, da zu viele der Teil-Protokolle auf andere Implementierungen zurückgreifen, die es zu diesem Zeitpunkt noch nicht gibt.
+Das Protokoll ist so nicht direkt in Anwendungen nutzbar, die auf der Datensicherheit der Eingabemengen bestehen.\\
+Dennoch habe ich gezeigt, dass das Protokoll funktioniert. Dadurch kann weitere Forschung auf dem Protokoll aufbauen und es erweitern oder verbessern.\\
+Das Ziel dieser Arbeit ist also erreicht, auch wenn bis zu einer sicheren Implementierung des Protokolls noch einige Arbeit fehlt.

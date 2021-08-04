@@ -1,0 +1,75 @@
+\chapter{Analyse}
+
+
+\section{Die Effizienz von MPCT}
+Das Protokoll MPCT, das die Größe der Schnittmenge der Eingabemengen sicher berechnet, ist bei meinen Tests auch bei insgesamt 100*99, also 9.900 Eingaben sehr schnell gewesen und hat auch bei rund 10.000 Eingaben schon nach wenigen Sekunden an secDT übergeben.\\
+\begin{lstlisting}[caption = Ausschnitt von Rückgabe von Test MPCTTestBig. Dauer von MPCT ohne SDT]
+MPCT start: 2021-07-28 16:52:52.62
+MPCT end: 2021-07-28 16:52:57.376
+\end{lstlisting}
+Das Protokoll MPCT benötigt also nur wenige zeitintensive Berechnungen, um die Eingabemengen so vorzubereiten, dass das nächste Teil-Protokoll secDT das Ergebnis berechnen kann. Die Berechnungsdauer von MPCT hängt also zu einem großen Teil von der Berechnungsdauer von secDT ab. 
+
+\section{Die Effizienz von secDT}
+Das Protokoll secDT, das berechnet, ob der Grad der Eingabepolynome kleiner als ein gegebener Wert ist, hat in meiner Analyse länger gebraucht, als MPCT ohne secDT. Das liegt jedoch daran, dass secDT auf mehreren anderen Teilprotokollen basiert. Diese anderen Teilprotokolle, wie OLS sind teilweise sehr rechenintensiv. Vor allem, da sie nicht wie im Paper beschrieben implementiert werden konnten. Wenn man aber die Berechnungszeit der anderen Teilprotokolle abzieht kann man einen besseren Überblick erhalten, wie effizient seccDT ist.
+
+\begin{lstlisting}[caption = Ausschnitt von Rückgabe von Test MPCTTestBig. Dauer von SDT]
+SDT start: 2021-07-28 17:05:15.126
+getRank start: 2021-07-28 17:05:15.407
+getRank end: 2021-07-28 17:08:21.118
+getRank start: 2021-07-28 17:08:21.125
+getRank end: 2021-07-28 17:11:41.791
+getRank start: 2021-07-28 17:11:42.232
+getRank end: 2021-07-28 17:14:51.385
+getRank start: 2021-07-28 17:14:51.39
+getRank end: 2021-07-28 17:18:07.677
+OLS start: 2021-07-28 17:18:08.135
+OLS end: 2021-07-28 17:21:27.384
+OLS start: 2021-07-28 17:21:27.385
+OLS end: 2021-07-28 17:24:47.028
+SDT end: 2021-07-28 17:24:50.787
+\end{lstlisting}
+
+19:31 min hat die die Berechnung von SDT insgesamt gedauert. Die Berechnung der vier Aufrufe von secRank hat rund 12:51 min gedauert und die Berechnung der zwei Aufrufe von OLS rund 6:49 min. Wenn man also die Berechnungszeit der beiden ineffizient implementierten Teilprotokolle abzieht, benötigt auch SDT nur rund 5 Sekunden um das Ergebnis der 42 verschlüsselten Eingaben zu berechnen. Diese 42 verschlüsselten Eingaben entsprechen ebenfalls den fast 10.000 Eingaben, die MPCT erhalten hat.
+
+
+\section{Die Berechnungen in beiden Protokollen}
+Im Folgenden werden die Berechnungen in secDT und MPCT zusammen betrachtet.
+Die Berechnungen in anderen Teilprotokollen werden nicht analysiert, weil sie nicht wie im Paper \cite{Doettling2021} beschrieben implementiert wurden.
+
+   \begin{table}[!h]
+     \centering
+     \begin{tabular}{ccccccc}
+       \textbf{Testname} & \textbf{Parteien} & \textbf{Mengengröße} & \textbf{erlaubte Abweichungen} & \textbf{decrypt} &\textbf{encrypt}\\
+       MPCTTest & 2 & 5 & 2 & 8 & 86\\
+       MPCTTest10Numbers & 2 & 10 & 2 & 8 & 86\\
+       MPCTTest4 & 2 & 5 & 4 & 8 & 126\\
+       MPCTTestBigTreshold & 2 & 10 & 9 & 8 & 226\\
+       MPCTTest10Parties & 10 & 5 & 2 & 40 & 790\\
+       MPCTTestBig &40 & 99 & 10 & 160 & 11646\\
+     \end{tabular}
+
+     \caption{Tabelle der Testergebnisse}
+     \label{tbl:results}
+     % Verweis im Text mittels \ref{tbl:beispieltabelle}
+
+   \end{table}
+   
+In der Tabelle \ref{tbl:results} kann man gut die Auswirkungen der unterschiedlichen Eingabeparameter auf die Berechnungszeit vergleichen. Da die Anzahl der Aufrufe der Teilprotokolle sich nicht ändert und die Anzahl der Entschlüsselungen auch immer gleich bleibt, ist die Anzahl der Verschlüsselungen eine gute Abschätzung der Kosten für die beiden Teilprotokolle MPCT und secDT.\\
+Wie an Test MPCTTest10Numbers zu sehen, hat die Größe der Eingabemengen keine Auswirkungen auf die Anzahl der Verschlüsselungen oder Entschlüsselungen in den beiden getesteten Protokollen. Die Berechnungszeit auf meinem Gerät liegt bei beiden Protokollen (MPCTTest und MPCTTest10Numbers) bei ungefähr 2,2 Sekunden. Die Berechnungen hängen also nicht bedeutend von der Größe der Eingabemengen ab. Die Protokolle wurden ja entworfen, um diese Eigenschaft zu erfüllen. \cite{Doettling2021} Und diese Eigenschaft wird auch von meinen Tests bestätigt.\\
+Im Gegensatz dazu hat die Veränderung der Anzahl beteiligten Parteien eine Auswirkung auf die Kosten der Protokolle. Wie zu sehen bei Test MPCTTest5Parties hat die Erhöhung der teilnehmenden Parteien auch die Anzahl an Verschlüsselungen erhöht.
+Im Vergleich zur Veränderung der "erlaubten Abweichungen" sind die Auswirkungen jedoch geringer.\\
+Das ist erkennbar, wenn man die beiden Tests MPCTTest10Parties und MPCTTestBigTreshold vergleicht. Um die Erlaubten Abweichungen im Test MPCTTestBigTreshold auf neun zu erhöhen musste ich auch die Mengengröße auf 10 erhöhen, da das Protokoll nur sinnvoll für die Berechnung ist, wenn die erlaubten Abweichungen geringer sind, als die Mengengröße. Andernfalls wäre der Rückgabewert immer true. Wie im vorigen Abschnitt zu sehen verändert die Mengengröße jedoch nicht die Anzahl der Verschlüsselungen. Dadurch wird das Ergebnis also nicht verfälscht.
+Wenn man nun also die Anzahl der Verschlüsselungen der beiden Tests vergleicht, sieht man, dass eine Veränderung der "erlaubten Abweichungen" um Sieben größere Auswirkungen hat als eine Veränderung der Parteien um Acht. Also hat die Anzahl der erlaubten Abweichungen die größte Auswirkung auf die Anzahl der Verschlüsslungen und näherungsweise auch auf die Berechnungszeit. Das ergibt sich auch aus den Zeitmessungen der Tests. Das entspricht auch der im Paper \cite{Doettling2021} genannten Protokoll-Komplexität von O(N*t*t).\\
+Die Veränderung der Größe des Körpers über dem die Berechnungen stattfinden hatte 
+in meinen Tests wiederum keine messbaren Auswirkungen. Das ist auch erwartbar, denn die einzigen Berechnungen, bei denen der Körper relevant ist sind Berechnungen mit BigIntegers. Und in diesen Berechnungen wird nur der Modulus verändert. Die Veränderungen sollten also kaum Auswirkungen auf die Berechnungszeit haben.\\
+
+
+\section{Analyseergebnisse}
+\subsection{Einordnung der Ergebnisse}
+Bei den durchgeführten Tests wurden alle Berechnungen vom Test ausgeführt. Wenn das Protokoll im Einsatz ist, werden diese Berechnungen jedoch auf die unterschiedlichen teilnehmenden Parteien aufgeteilt. Die Analyse im vorangegangenen Kapitel bezieht die Berechnungen von allen teilnehmenden Parteien (und dem Koordinator) mit ein. Betrachtet werden also die Gesamtkosten des Protokolls, jedoch nicht die Berechnungen pro teilnehmender Partei.\\
+Durch die in Kapitel \ref{Änderungen} auf Seite \pageref{Änderungen} vorgestellten Änderungen 
+
+
+\subsection{Aussage der Ergebnisse}
+Die Testergebnisse stimmen mit den im Paper angegebenen Berechnungskomplexitäten ungefähr überein. Die Berechnungen hängen nicht von der Mengengröße oder der Größe des Körpers ab, sondern nur von der Anzahl der Parteien und der "erlaubten Abweichungen" und die Anzahl der erlaubten Abweichungen hat eine größere Auswirkung auf die Berechnungen als die Zahl der Parteien.\\
+Damit ist das Ziel des Papers \cite{Doettling2021} erreicht, denn das MPCT Protokoll wurde entworfen, damit die Laufzeit nicht mehr von der Anzahl der Eingaben abhängt.
