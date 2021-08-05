@@ -1,0 +1,42 @@
+\contentsline {chapter}{Abstract}{v}{dummy.2}%
+\vspace {1em}
+\contentsline {chapter}{Abbreviations}{ix}{dummy.4}%
+\vspace {2em}
+\contentsline {chapter}{\numberline {1}Einführung}{1}{chapter.7}%
+\contentsline {section}{\numberline {1.1}Anwendungsbeispiel}{2}{section.9}%
+\contentsline {section}{\numberline {1.2}Zielsetzung}{2}{section.10}%
+\contentsline {chapter}{\numberline {2}Grundlagen}{5}{chapter.11}%
+\contentsline {section}{\numberline {2.1}Homomorphe Verschlüsselungen}{5}{section.12}%
+\contentsline {section}{\numberline {2.2}Secure Computation}{5}{section.13}%
+\contentsline {chapter}{\numberline {3}Multiparty Cardinality Testing}{7}{chapter.14}%
+\contentsline {section}{\numberline {3.1}Neues am Paper}{7}{section.15}%
+\contentsline {section}{\numberline {3.2}Abwandlungen zum Paper}{7}{section.16}%
+\contentsline {subsection}{\numberline {3.2.1}Broadcasts}{7}{subsection.17}%
+\contentsline {subsection}{\numberline {3.2.2}Koordinieren der Parteien}{9}{subsection.24}%
+\contentsline {section}{\numberline {3.3}andere Veröffentlichungen}{9}{section.41}%
+\contentsline {chapter}{\numberline {4}Funktion der Software}{11}{chapter.42}%
+\contentsline {section}{\numberline {4.1}Verschlüsselungen}{11}{section.43}%
+\contentsline {subsection}{\numberline {4.1.1}Die Wahl der Verschlüsselung}{11}{subsection.44}%
+\contentsline {subsection}{\numberline {4.1.2}Damgard-Jurik Verschlüsselung}{11}{subsection.45}%
+\contentsline {subsection}{\numberline {4.1.3}Übertragung der Python Implementierung}{12}{subsection.46}%
+\contentsline {section}{\numberline {4.2}Architektur}{12}{section.47}%
+\contentsline {section}{\numberline {4.3}Ring Realisierung}{12}{section.48}%
+\contentsline {section}{\numberline {4.4}sichere Matrix Berechnungen}{13}{section.83}%
+\contentsline {chapter}{\numberline {5}Analyse}{15}{chapter.87}%
+\contentsline {section}{\numberline {5.1}Die Effizienz von MPCT}{15}{section.88}%
+\contentsline {section}{\numberline {5.2}Die Effizienz von secDT}{15}{section.92}%
+\contentsline {section}{\numberline {5.3}Die Berechnungen in beiden Protokollen}{16}{section.109}%
+\contentsline {subsection}{\numberline {5.3.1}Erklärung der Tabelle}{16}{subsection.111}%
+\contentsline {subsection}{\numberline {5.3.2}Analyse der Testergebnisse}{17}{subsection.112}%
+\contentsline {section}{\numberline {5.4}Analyseergebnisse}{18}{section.113}%
+\contentsline {subsection}{\numberline {5.4.1}Einordnung der Ergebnisse}{18}{subsection.114}%
+\contentsline {subsection}{\numberline {5.4.2}Aussage der Ergebnisse}{18}{subsection.117}%
+\contentsline {chapter}{\numberline {6}Probleme der Software}{21}{chapter.118}%
+\contentsline {section}{\numberline {6.1}Nicht alle Protokolle sicher implementiert}{21}{section.119}%
+\contentsline {section}{\numberline {6.2}Bei großen Zahlen interferieren von Ring und Verschlüsselung}{22}{section.135}%
+\contentsline {chapter}{\numberline {7}Fazit}{25}{chapter.136}%
+\vspace {2em}
+\contentsline {chapter}{List of Figures}{25}{dummy.137}%
+\contentsline {chapter}{List of Tables}{29}{dummy.139}%
+\vspace {2em}
+\contentsline {chapter}{Bibliography}{31}{dummy.141}%
