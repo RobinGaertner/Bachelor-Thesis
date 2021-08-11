@@ -1,0 +1,29 @@
+\chapter{Einführung}
+Secure Multiparty Computation ist ein großes Forschungsfeld in der Kryptographie, in dem zwar schon in den 1980er Jahren die Forschung unter anderem mit Arbeiten von Yao \cite{Yao1982} begann, das aber seit den 2000er Jahren mehr Aufmerksamkeit bekommt. Das ist unter anderem im Anstieg der Anzahl der Veröffentlichungen pro Jahr in diesem Bereich zu sehen \cite{Kogan2021}. 
+In diesem Forschungsfeld werden Methoden erforscht, mit denen gemeinsam Funktionen von Eingabedaten berechnet werden können, ohne dass dabei die anderen teilnehmenden Parteien die Eingabedaten erhalten.\\
+Die Forschungen in den 80er Jahren haben die theoretischen Grundlagen der Forschung geliefert und sich beispielsweise damit beschäftigt, welche Berechnungen überhaupt möglich sind. Die Forschung in den letzten Jahren ist jedoch eher praktisch, das Ziel ist es also die Fortschritte auch in Anwendungen nutzbar zu machen \cite{Kogan2021}.\\
+Denn durch mehrere Effekte wurden die Berechnungen erst in breiteren Anwendungsbereichen sinnvoll nutzbar. Einerseits wurden die berechnenden Computer stärker, beispielsweise hat sich die CPU Geschwindigkeit in PCs ungefähr verdoppelt. Das allein kann aber noch nicht die mehr als 60.000 fache Beschleunigung der Berechnungsgeschwindigkeit erklären. \cite{Kogan2021}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width = 8cm]{comptime.png}
+\caption{Die Veränderung der Berechnungzeit für Secure Computation\\}
+\cite{Kogan2021}
+\label{evolution_of_computation}
+\end{center}
+
+\end{figure}
+
+Die Grafik \ref{evolution_of_computation} stellt dar, wie sich die Geschwindigkeit der Secure Computation über die Jahre verändert hat.
+Dazu sind auf der X-Achse die Jahreszahlen angegeben und auf der Y-Achse die Berechnungszeit in Sekunden in einer logarithmischen Skala. Abgebildet ist, wie lange das zu diesem Zeitpunkt schnellste Secure Computation Protokoll für die Berechnung von AES bei der Beteiligung von zwei Parteien benötigt.\\
+
+Durch die Grafik \ref{evolution_of_computation} wird die sich immer weiter verbessernde Geschwindigkeit der Secure Computation Protokolle deutlich. Zur leichteren Lesbarkeit und besseren Vergleichbarkeit zeigt die Grafik zwar nur die Berechnungszeiten für zwei Parteien, dennoch wird deutlich, dass sich durch die Forschung in diesem Bereich die Effizienz von Secure Computation Protokollen stark gesteigert hat.
+Der größte Teil des Tempogewinns liegt also an den neuen oder verbesserten Protokollen, die entwickelt wurden.\\
+Eine Funktion, die in vielen Bereichen interessant sein kann, ist die Schnittmenge der Eingabemengen der teilnehmenden Parteien. 2021 veröffentlichten Branco et al. \cite{Doettling2021} ein Paper, in dem ein neues Protokoll vorgestellt wurde, das genau diese Funktion erfüllt. Durch eine Analyse kann nun festgestellt werden, wie effizient dieses Protokoll ist.
+
+\section{Anwendungsbeispiel}
+Der Browser Tor, den Menschen benutzen können, um in das sogenannte Darknet zu gelangen, legt einen sehr großen Wert auf die Sicherheit der Nutzer. Das macht die Analyse bestimmter Statistiken sehr schwierig. Deshalb gibt es auch vom Anbieter selbst keine genauen Angaben über beispielsweise die Nutzerzahl, sondern nur Schätzungen. Um genauere Schätzungen über die Nutzerzahl zu ermöglichen, könnte man nun Daten von mehreren "Knoten" des Tor Browsers kombinieren. In diesem Fall möchte man gerne herausfinden, wie viele Überschneidungen es in den Daten der "Knoten" gibt, um Mehrfachzählungen zu vermeiden. Da viele Nutzer des Tor Browsers aber einen sehr großen Wert auf Sicherheit legen, möchte man natürlich tunlichst vermeiden, Daten von mehreren "Knoten" miteinander zu kombinieren, weil so möglicherweise Informationen gewonnen werden könnten, die geheim bleiben sollten.\\
+Um zu garantieren, dass die Daten beispielsweise nur zur Ermittlung der Größe der Schnittmenge genutzt werden, können spezielle Protokolle genutzt werden, die die Daten nur verschlüsselt benutzen und nur ganz bestimmte  Analysen der verschlüsselten Daten erlauben. So können Statistiken über den Tor Browser erstellt werden, ohne dass die Gefahr besteht, dass Informationen der Nutzer zugänglich werden.
+
+\section{Zielsetzung}
+Das Ziel der Arbeit ist es, die Effizienz und Geschwindigkeit der im Paper von Branco et al. \cite{Doettling2021} vorgestellten neuen Teilprotokolle zu testen. \\
+Um alle Teilprotokolle wie im Paper beschrieben zu implementieren, werden auch Implementierungen von anderen Veröffentlichungen benötigt (\cite{Schoenmakers} Beispielsweise für das secureRank Teilprotokoll). Da zu diesem Zeitpunkt noch keine derartigen Implementierungen veröffentlicht sind, kann auch nicht auf diese zurückgegriffen werden. Um die Teilprotokolle, die im Paper von Branco et al. \cite{Doettling2021} beschrieben sind, trotzdem analysieren zu können, habe ich die Unterprotokolle, die auf solche externen Paper zurückgreifen auf unsichere Weise implementiert. Dadurch funktioniert das Protokoll und die Tests können zumindest genaue Daten für die Berechnungen in den korrekt implementierten Protokollen geben.

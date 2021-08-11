@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Thesis.aux
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: alpha.bst
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+Database file #1: src/Bibliography.bib
+Warning--to sort, need author or key in JLinAlg
+Warning--empty journal in IvanDamgard2004
+Warning--empty author in JLinAlg
+Warning--empty year in JLinAlg
+Warning--empty journal in Doettling2021
+Warning--empty journal in Shamir1979
+You've used 14 entries,
+            2543 wiz_defined-function locations,
+            646 strings with 6957 characters,
+and the built_in function-call counts, 5155 in all, are:
+= -- 523
+> -- 198
+< -- 13
++ -- 66
+- -- 63
+* -- 304
+:= -- 809
+add.period$ -- 48
+call.type$ -- 14
+change.case$ -- 79
+chr.to.int$ -- 14
+cite$ -- 21
+duplicate$ -- 225
+empty$ -- 406
+format.name$ -- 82
+if$ -- 1098
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 8
+newline$ -- 75
+num.names$ -- 43
+pop$ -- 114
+preamble$ -- 1
+purify$ -- 93
+quote$ -- 0
+skip$ -- 202
+stack$ -- 0
+substring$ -- 226
+swap$ -- 50
+text.length$ -- 13
+text.prefix$ -- 6
+top$ -- 0
+type$ -- 112
+warning$ -- 6
+while$ -- 44
+width$ -- 16
+write$ -- 182
+(There were 6 warnings)

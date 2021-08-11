@@ -1,0 +1,18 @@
+\mbox{}
+%\clearpage
+\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
+
+% The Abstract Page
+\addtotoc{Abstract}  % Add the "Abstract" page entry to the Contents
+\abstract{
+
+Diese Arbeit ist eine Analyse, des in \cite{Doettling2021} von Branco et al. vorgestellten Protokolls.
+Das in dem Paper vorgestellte Protokoll ermöglicht es beliebig vielen Parteien, die Schnittmenge ihrer Eingabemengen zu berechnen, wenn die Schnittmenge groß genug ist. Dabei soll jedoch das Ergebnis dieser Berechnung die einzige Information sein, die die anderen Parteien erhalten. Ein großer Teil dieser Berechnung ist die Ermittlung der Größe der Schnittmenge. Die effiziente Lösung dieses Problems ist der Fokus des Papers von Branco et al. \cite{Doettling2021}.\\
+Durch die Komplexität des Protokolls ist eine theoretische Analyse des Protokolls schwierig, wohingegen eine Implementierung des Protokolls einfacher wäre.\\
+Um das Protokoll zu analysieren, habe ich also die relevanten Teil-Protokolle wie im Paper beschrieben in Java implementiert und die Funktionalitäten der auch schon in anderen Papern beschriebenen Protokolle abgebildet. Zusätzlich habe ich für die grundlegenden Funktionalitäten auch eine additiv homomorphe Verschlüsselung in Java implementiert und diese so erweitert, dass sie auch die Multiplikation von verschlüsselten Zahlen ermöglicht.\\
+Die Analyse zeigt, wie effizient das Protokoll ist, welche Faktoren die Anzahl der Berechnungen und die Berechnungszeit beeinflussen, und welche Faktoren dabei den größten Einfluss haben.\\
+Durch diese Analyse kann nun die Geschwindigkeit des Protokolls für unterschiedliche Anwendungen besser eingeschätzt werden.
+
+\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+
+\clearpage  % Abstract ended, start a new page

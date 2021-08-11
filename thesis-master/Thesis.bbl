@@ -1,0 +1,92 @@
+\begin{thebibliography}{KMWF07}
+
+\bibitem[BMRR20]{cryptoeprint:2020:600}
+Saikrishna Badrinarayanan, Peihan Miao, Srinivasan Raghuraman, and Peter
+  Rindal.
+\newblock Multi-party threshold private set intersection with sublinear
+  communication.
+\newblock Cryptology ePrint Archive, Report 2020/600, 2020.
+\newblock \url{https://eprint.iacr.org/2020/600}.
+
+\bibitem[GS19]{Ghosh2019}
+Satrajit Ghosh and Mark Simkin.
+\newblock The communication complexity of threshold private set intersection.
+\newblock Cryptology ePrint Archive, Report 2019/175, 2019.
+\newblock \url{https://eprint.iacr.org/2019/175}.
+
+\bibitem[ID04]{IvanDamgard2004}
+Mads~Jurik Ivan~Damgard.
+\newblock A generalization of paillier’s public-key systemwith applications
+  to electronic voting.
+\newblock 2004.
+
+\bibitem[JLi]{JLinAlg}
+Jlinalg library.
+\newblock {\em http://jlinalg.sourceforge.net}.
+
+\bibitem[KMWF07]{tcc-2007-3673}
+Eike Kiltz, Payman Mohassel, Enav Weinreb, and Matthew~K. Franklin.
+\newblock Secure linear algebra using linearly recurrent sequences.
+\newblock In {\em Theory of Cryptography, 4th Theory of Cryptography
+  Conference, TCC 2007, Amsterdam, The Netherlands, February 21-24, 2007,
+  Proceedings}, volume 4392 of {\em Lecture Notes in Computer Science}, pages
+  291--310. Springer, 2007.
+
+\bibitem[Kog21]{Kogan2021}
+Digma Kogan.
+\newblock A few lessons from the history of multiparty computation.
+\newblock
+  https://theorydish.blog/2021/05/26/few-lessons-from-the-history-of-multiparty-computation,
+  May 2021.
+\newblock Stand: 17.7.2021.
+
+\bibitem[Lin20]{cryptoeprint:2020:300}
+Yehuda Lindell.
+\newblock Secure multiparty computation (mpc).
+\newblock Cryptology ePrint Archive, Report 2020/300, 2020.
+\newblock \url{https://ia.cr/2020/300}.
+
+\bibitem[Pai99]{10.1007/3-540-48910-X_16}
+Pascal Paillier.
+\newblock Public-key cryptosystems based on composite degree residuosity
+  classes.
+\newblock In Jacques Stern, editor, {\em Advances in Cryptology --- EUROCRYPT
+  '99}, pages 223--238, Berlin, Heidelberg, 1999. Springer Berlin Heidelberg.
+
+\bibitem[PB21]{Doettling2021}
+Sihang~Pu Pedro~Branco, Nico~Döttling.
+\newblock Multiparty cardinality testing for threshold private setintersection.
+\newblock 2021.
+
+\bibitem[Sha79]{Shamir1979}
+Adi Shamir.
+\newblock How to share a secret.
+\newblock 1979.
+
+\bibitem[ST06]{Schoenmakers}
+B.~Schoenmakers and P.T. Tuyls.
+\newblock Efficient binary conversion for paillier encrypted values.
+\newblock In S.~Vaudenay, editor, {\em Advances in Cryptology - Eurocrypt 2006
+  (Proceedings 25th Annual International Conference on the Theory and
+  Applications of Cryptographic Techniques, Saint Petersburg, Russia, May
+  28-June 1, 2006)}, Lecture Notes in Computer Science, pages 522--537,
+  Germany, 2006. Springer.
+
+\bibitem[swa]{swansonk14}
+swansonk14.
+\newblock Damgard-jurik.
+\newblock https://github.com/cryptovoting/damgard-jurik.
+
+\bibitem[Yao82]{Yao1982}
+A.~C. Yao.
+\newblock Protocols for secure computations.
+\newblock In {\em Proceedings of the 23rd Annual IEEE Symposium on Foundations
+  of Computer Science}, pages 160--164, Washington, DC, USA, 1982. IEEE
+  Computer Society.
+
+\bibitem[YPB14]{Yi2014}
+X~Yi, R~Paulet, and E~Bertino.
+\newblock Homomorphic encryption. in: Homomorphic encryption and applications.
+  springerbriefs in computer science, 2014.
+
+\end{thebibliography}
