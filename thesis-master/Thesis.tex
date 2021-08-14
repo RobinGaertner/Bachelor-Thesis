@@ -1,0 +1,241 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex -- MAIN FILE (the one that you compile with LaTeX)
+%% ---------------------------------------------------------------- 
+
+% Set up the document
+\documentclass[a4paper, 11pt, twoside, openright]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\graphicspath{{res/Figures/}}  % Location of the graphics files (set up for graphics to be in PDF format)
+
+% Include any extra LaTeX packages required
+\usepackage[square, numbers, comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
+\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[T1]{fontenc}
+
+\usepackage{subcaption}
+\usepackage{venturis2}
+\usepackage{lmodern}
+\usepackage{textcomp}    % solve issues with lmodern
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{microtype}   % better typesetting with pdfLaTeX
+\usepackage{ps4pdf}
+
+\usepackage{verbatim}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{mathtools}
+\usepackage{color}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{blindtext}
+\usepackage[ngerman]{babel}
+
+\usepackage{csvsimple}
+
+\title{\LaTeX}
+
+\date{}
+
+\newtheorem{mydef}{Definition}
+\newtheorem{myex}{Example}
+\newtheorem{myprob}{Problem}
+\PSforPDF{
+  \usepackage{pstricks}
+}
+\usepackage[compact]{titlesec}
+\usepackage{booktabs}
+\usepackage{sectsty}     % section titles in specified font face
+%\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{caption}
+\usepackage{xcolor}
+
+\usepackage{enumitem}
+\newcommand\litem[1]{\item{\bfseries #1}} % for labeled items (see tools used)
+
+\allsectionsfont{\sffamily}
+\numberwithin{algorithm}{chapter}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\renewcommand{\captionlabelfont}{\sffamily\bfseries}
+\newtheorem{thm}{Theorem}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\term}[1]{{\sf {\small #1}}}
+\hypersetup{urlcolor=black, colorlinks=false}  % Colours hyperlinks in blue, but this can be distracting if there are many links.
+\input{src/definitions}
+
+\listfiles
+
+%\usepackage[draft]{hyperref}
+%\usepackage[hyperfootnotes=false,plainpages=false]{hyperref}
+%% ----------------------------------------------------------------
+\begin{document}
+\frontmatter	  % Begin Roman style (i, ii, iii, iv...) page numbering
+
+% Set up the Title Page
+\title  {Implementing Private Set Intersection}
+\authors  {Robin Gärtner}
+\addresses  {\groupname\\\deptname\\\univname}  % Do not change this here, instead these must be set in the "Thesis.cls" file, please look through it instead
+\UNIVERSITY {\texorpdfstring{\href{https://www.uni-saarland.de}
+            {Universit\"at des Saarlandes}}
+            {Universit\"at des Saarlandes}}
+\faculty{MI Fakult\"at f\"ur Mathematik und Informatik}
+\department{\texorpdfstring{\href{https://saarland-informatics-campus.de/}
+            {Department of Computer Science}}
+            {Department of Computer Science}}
+\reviewers{Prof. Dr. Nico Döttling}{Prof. Dr. Nils Ole Tippenhauer}
+\date       {\today}
+\subject    {}
+\keywords   {}
+\thesistype {Bachelorthesis}
+\handin     {August 18, 2021}
+\ifdefined\texhash
+    \version {\texhash}
+\else
+    \version{}
+\fi
+\maketitle
+%% ----------------------------------------------------------------
+
+\setstretch{1.3}  % It is better to have smaller font and larger line spacing than the other way round
+
+% Define the page headers using the FancyHdr package and set up for one-sided printing
+\fancyhead{}  % Clears all page headers and footers
+\rhead{\thepage}  % Sets the right side header to show the page number
+\lhead{}  % Clears the left side page header
+
+\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
+\fancyhead[RE,LO]{\sffamily\bfseries\nouppercase{\rightmark}}
+\fancyhead[LE,RO]{\thepage}
+%% ----------------------------------------------------------------
+% Declaration Page required for the Thesis, your institution may give you a different text to place here
+\input{src/Presections/declaration}
+%% ----------------------------------------------------------------
+% The "Dedication Page"
+%\pagestyle{empty}  % No headers or footers for the following pages
+
+%\input{src/Presections/dedication}
+
+%% ----------------------------------------------------------------
+\pagestyle{empty}
+
+\input{src/Presections/abstract}
+%% ----------------------------------------------------------------
+\pagestyle{empty}
+%\input{src/Presections/acknowledgement}
+%% ----------------------------------------------------------------
+
+\pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
+
+
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Contents}}  % Set the left side page header to "Contents"
+\tableofcontents  % Write out the Table of Contents
+
+%% ----------------------------------------------------------------
+\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
+\clearpage  % Start a new page
+%\lhead{\emph{Abkürzungen}}  % Set the left side page header to "Abbreviations"
+\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
+{
+ \textbf{Abkürzung} & \textbf{Bedeutung} \\
+PSI & \textbf{P}rivate \textbf{S}et \textbf{I}ntersection\\
+MPCT & \textbf{M}ulti \textbf{P}arty \textbf{C}ardinality \textbf{T}esting\\
+SDT & \textbf{Sec}ure \textbf{D}egree \textbf{T}est\\
+OLS & \textbf{O}blivious \textbf{L}inear \textbf{S}ystem solver\\
+SUR & \textbf{S}ecure \textbf{U}nary \textbf{R}epresentation\\
+
+}
+
+%% ----------------------------------------------------------------
+%\clearpage  %Start a new page
+%\lhead{\emph{Symbols}}  % Set the left side page header to "Symbols"
+%\listofnomenclature{lll}  % Include a list of Symbols (a three column table)
+%{
+% symbol & name & unit \\
+%$a$ & distance & m \\
+%$P$ & power & W (Js$^{-1}$) \\
+%& & \\ % Gap to separate the Roman symbols from the Greek
+%$\omega$ & angular frequency & rads$^{-1}$ \\
+%}
+%% ----------------------------------------------------------------
+% End of the pre-able, contents and lists of things
+% Begin the Dedication page
+
+\setstretch{1.3}  % Return the line spacing back to 1.3
+
+\pagestyle{empty}  % Page style needs to be empty for this page
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+
+
+%% ----------------------------------------------------------------
+\mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
+\pagestyle{fancy}  % Return the page headers back to the "fancy" style
+
+% Include the chapters of the thesis, as separate files
+% Just uncomment the lines as you write the chapters
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{src/Chapters/chapter1.tex} % 
+
+\input{src/Chapters/chapter2.tex} % Background
+
+\input{src/Chapters/chapter3.tex} % Related Work
+
+\input{src/Chapters/chapter4.tex} % Exploits
+
+\input{src/Chapters/chapter6.tex} % Evaluation
+
+\input{src/Chapters/chapter5.tex} % Defense
+
+%\input{src/Chapters/chapter7.tex} % Discussion
+
+\input{src/Chapters/chapter8.tex} % Conclusion
+
+%% ----------------------------------------------------------------
+% Now begin the Appendices, including them as separate files
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Liste von Darstellungen}}  % Set the left side page header to "List if Figures"
+\listoffigures  % Write out the List of Figures
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Liste von Tabellen}}  % Set the left side page header to "List of Tables"
+\listoftables  % Write out the List of Tables
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+%\input{src/Appendices/AppendixA} % tables
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+\backmatter
+
+%% ----------------------------------------------------------------
+\label{Bibliography}
+\nocite{*}
+\lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
+\  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliographystyle{alpha}
+%\bibliographystyle{IEEEtran}
+\bibliography{src/Bibliography}  % The references (bibliography) information are stored in the file named "Bibliography.bib"
+
+\end{document}  % The End
+%% ----------------------------------------------------------------
