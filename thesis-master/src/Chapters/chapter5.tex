@@ -1,0 +1,44 @@
+\chapter{Probleme der Software}
+
+\section{Nicht alle Protokolle sicher implementiert}
+Die im Paper angegebene Implementierung einiger Teil-Protokolle benötigt auch Implementierungen anderer Veröffentlichungen, die es zum Zeitpunkt dieser Arbeit noch nicht gibt. Daher hat die Zeit nicht ausgereicht, um alle Protokolle sicher zu implementieren und ich  musste einige Teil-Protokolle unsicher implementieren, um die Funktionalität des Protokolls zeigen zu können.\\
+
+\begin{lstlisting}[caption = Ausschnitt aus der unsicheren Implementierung von OLS (vereinfacht), label = {Code:OLS}]
+private List<EncryptedNumber> OLS (EncMatrix matrix, EncMatrix vector){
+
+		//decrypt the Matrix so the library can handle it
+        Matrix<FModular> fMatrix = new Matrix<>(decryptMatrix(matrix));
+
+        // decrypt the Vector so the library can handle it
+        Vector<FModular> fVector = new Vector<>(decryptMatrix(vector));
+
+        // calculate the solution
+        Vector<FModular> res = LinSysSolver.solve(fMatrix, fVector);
+        
+        //encrypt the result of the libary computation
+        return encrypt(res);
+}
+\end{lstlisting}
+
+Wie im vorangehenden Codeausschnitt \ref{Code:OLS} zu sehen, habe ich, um die Funktionalität von OLS zu simulieren, die verschlüsselten Matrizen in der Eingabe erst entschlüsselt, dann das Ergebnis berechnet und am Ende das Ergebnis wieder verschlüsselt. Dadurch berechnet diese Implementierung zwar das richtige Ergebnis, auch wenn das Teilprotokoll im Paper \cite{Doettling2021} anders beschrieben ist. Durch diese Veränderung hat meine Implementierung von OLS eine andere Laufzeit als das beschriebene Teil-Protokoll OLS, weil es viele Zeitintensive Entschlüsselungs-Operationen berechnen muss. Die Entschlüsselung könnte Eigenschaften der Eingabewerte offenbaren, was diese Implementierung unsicher macht.\\
+Die im Paper beschriebene Funktionsweise benötigt jedoch das Teil-Protokoll SUR und das basiert auf einer Veröffentlichung von Schoenmakers und Tuyls \cite{Schoenmakers}.
+Wenn die relevanten Teile der anderen Paper implementiert sind, können diese dann die unsicheren Teil-Protokolle ersetzen und diese Implementierung damit sicher machen.
+Die Teil-Protokolle, bei denen eine sichere Implementierung zeitlich machbar war, habe ich wie im Paper gezeigt, sicher implementiert. Dazu zählen unter anderem die grundlegenden Teil-Protokolle wie \glqq secure Matrix Multiplication\grqq{}, und die interessantesten Teil-Protokolle wie \glqq secure Cardinality Testing\grqq
+Da für die Protokolle, die auf anderen Papern basieren, teilweise noch keine sicheren Implementierungen vorliegen, muss auch darauf vertraut werden, dass diese in den Papern vorgestellten Protokolle auch wie beschrieben funktionieren und sie effizient genug sind, um die Laufzeit des secDT Protokolls nicht so stark zu verändern, dass es ineffizient wird.\\
+
+
+\section{Bei großen Eingaben Interferenz von Ring und Verschlüsselung}
+Bei der Implementierung der zu analysierenden Teilprotokolle habe ich bemerkt, dass sich die verschlüsselten Zahlen in zwei unterschiedlichen Moduli befinden. Einmal finden die Berechnungen über einem endlichen Körper statt. Der Körper ist so gewählt, dass die Anzahl seiner Elemente einer Primzahl entspricht. Für Berechnungen in diesem Körper werden die Berechnungen dann modulo dieser Primzahl angestellt.\\
+Gleichzeitig befinden sich die verschlüsselten Zahlen jedoch auch in einem anderen Körper, dem der Verschlüsselung. Um beispielsweise zwei verschlüsselte Zahlen zu addieren, werden auch Berechnungen modulo einer zusammengesetzten Zahl angestellt. Alleine durch die Eigenschaft, dass die Zahl zusammengesetzt ist, muss sie schon unterschiedlich zu der anderen Modulo Zahl, einer Primzahl sein.\\
+Diese beiden unterschiedlichen Modulo können theoretisch zu Problemen führen, denn durch Berechnungen mit beiden Modulos kann es zu unerwarteten Ergebnissen kommen.
+Beispielsweise ist (73 \% 7) \% 22  = 3 , aber (73 \% 22) \% 7 = 0. Und da es sich bei den Berechnungen teilweise um verschlüsselte Zahlen handelt, ist die richtige Reihenfolge der Anwendungen der Modulos nicht immer möglich. Die verschlüsselten Zahlen können nicht einfach Modulo der Größe des Körpers berechnet werden können, da sich die Zahlen durch die Verschlüsselung im Modulo der Körpers verändern.\\
+Das Problem sollte jedoch nicht auftreten, wenn ein Modulo sehr viel größer ist als das andere Modulo. In unserem Fall ist das Modulo der Verschlüsselung sehr viel größer, als das Modulo des Körpers. Die Größe der Eingaben ist also durch die Größe des Körpers nach oben beschränkt. Und da wir nur eine begrenzte Zahl an Berechnungen auf den verschlüsselten Abgaben ausführen, können die Werte nur begrenzt wachsen. Wenn nun das Modulo in der Verschlüsselung groß genug gewählt ist, kann sicher gegangen werden, dass das Modulo der Verschlüsselung innerhalb der Berechnungen der Protokolle nicht erreicht werden kann.\\
+Zum besseren Verständnis kann das folgende Beispiel betrachtet werden:\\
+Nehmen wir an, drei Multiplikationen werden ausgeführt und der Körper hat die Größe 10, also sind die Eingaben immer kleiner als 10.\\
+Das Ergebnis der ersten Multiplikation muss kleiner als 100 sein.\\
+Das Ergebnis der zweiten Multiplikation muss kleiner als 10.000 sein.\\
+Das Ergebnis der dritten Multiplikation muss kleiner als 100.000.000 sein.\\
+Wenn nun das Modulo der Verschlüsselung größer als 100.000.000 ist, ist es unmöglich, dass die Zahl durch die Verschlüsselung verändert wird, auch wenn bei den Zwischenergebnissen kein Modulo des Körpers angewandt wurde.\\
+Die Zwischenergebnisse können also pro Berechnung nur (abhängig von der Berechnung) begrenzt steigen.
+Wenn das Modulo aus der Verschlüsselung also groß genug gewählt wurde, ist es für die Berechnungen irrelevant und hat keine Auswirkungen auf die Korrektheit der Berechnungen, auch wenn durch die Verschlüsselung zwischenzeitliche Modulo-Berechnungen des Körpers unmöglich sind.\\
+Dieses Problem, dass Verschlüsselung und der Körper interferieren können, ist auch bei meinen Tests aufgetreten. Der Test MPCTTestBig gab teilweise falsche Ergebnisse zurück. In diesem Fall war das Modulo der Verschlüsselung im Bereich von 16 Bits und das Modulo des Körpers im Bereich von 32 Bits. Nachdem das Modulo der Verschlüsselung auf rund 64 Bits erhöht wurde, trat dieser Fehler nicht wieder auf.\\

@@ -1,0 +1,15 @@
+\babel@toc {ngerman}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Die Grafik \ref {evolution_of_computation} stellt dar\tmspace +\thinmuskip {.1667em} wie sich die Geschwindigkeit der Secure Computation über die Jahre verändert hat. Auf der Y-Achse die Berechnungszeit in Sekunden in einer logarithmischen Skala angegeben. Abgebildet ist, wie lange das zu diesem Zeitpunkt schnellste Secure Computation Protokoll für die Berechnung von AES bei der Beteiligung von zwei Parteien benötigt. \relax }}{2}{figure.caption.8}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Teil-Protokoll secInv\relax }}{11}{figure.caption.23}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Ausschnitt aus Teil-Protokoll secDT\relax }}{16}{figure.caption.80}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Die Entwicklung der Berechnungsdauer von MPCT ohne SDT bei unterschiedlich vielen Eingaben\relax }}{17}{figure.caption.83}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Die Aufteilung der Berechnungszeit von SDT im Test Big. Die Gesamtdauer von SDT beträgt 76 Sekunden\relax }}{18}{figure.caption.85}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
